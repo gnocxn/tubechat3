@@ -12,6 +12,28 @@ body {
     height: 200px;
 }
 
+.modelShow .panel-body{
+    min-height: 550px !important;
+}
+
+.modelShow iframe, .embed-responsive {
+    min-height: 528px !important;
+}
+
+.modelShow iframe{
+    width: 99%;
+}
+
+.modelShow .tags {
+    padding : 5px 0px 0px 5px;
+    margin: 0px;
+}
+
+.modelShow .tags li{
+    display: inline-block;
+    margin: 2px;
+}
+
 footer{
     width: 100%;
     padding-top: 15px;

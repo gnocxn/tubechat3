@@ -16,8 +16,31 @@ export default class Menu extends React.Component{
 		window.emitter.emit('changeFilter', e.target.value);
 	}
 	render(){
-		//let HomeMenu = (window.HomeMenu) ? window.HomeMenu : null;
-
+        let regDetailModel = /\/user\//;
+        let filterMenu = <form className="navbar-form navbar-right">
+            <div className="form-group">
+                <label htmlFor="sltFilter">Filter:&nbsp;</label>
+                <select name="sltFilter" id="sltFilter" className="form-control" onChange={this.__sltFilterChange}>
+                    <option value="Features" defaultValue='Features'>Features</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                    <option value="Coupe">Coupe</option>
+                </select>
+            </div>
+            &nbsp;
+            <div className="form-group">
+                <label htmlFor="sltSortBy">Sort:&nbsp;</label>
+                <select name="sltSortBy" id="sltSortBy" className="form-control" onChange={this.__sltSortByChange}>
+                    <option value="NumberUsersHighestFirst" defaultValue='NumberUsersHighestFirst'>Users : highest first</option>
+                    <option value="NumberUsersLowestFirst">Users : lowest first</option>
+                    <option value="AgeHighestFirst">Age : highest first</option>
+                    <option value="AgeLowestFirst">Age : lowest first</option>
+                </select>
+            </div>
+        </form>
+        if(regDetailModel.test(document.location.hash)){
+            filterMenu = '';
+        }
 		return <nav className="navbar navbar-default navbar-fixed-top">
 			<div className="container">
 				<div className="navbar-header">
@@ -33,27 +56,7 @@ export default class Menu extends React.Component{
 					<ul className="nav navbar-nav">
 						<li className="active"><a href="/">Home</a></li>
 					</ul>
-					<form className="navbar-form navbar-right">
-						<div className="form-group">
-							<label htmlFor="sltFilter">Filter:&nbsp;</label>
-							<select name="sltFilter" id="sltFilter" className="form-control" onChange={this.__sltFilterChange}>
-								<option value="Features" defaultValue='Features'>Features</option>
-								<option value="Female">Female</option>
-								<option value="Male">Male</option>
-								<option value="Coupe">Coupe</option>
-							</select>
-						</div>
-						&nbsp;
-						<div className="form-group">
-							<label htmlFor="sltSortBy">Sort:&nbsp;</label>
-							<select name="sltSortBy" id="sltSortBy" className="form-control" onChange={this.__sltSortByChange}>
-								<option value="NumberUsersHighestFirst" defaultValue='NumberUsersHighestFirst'>Users : highest first</option>
-								<option value="NumberUsersLowestFirst">Users : lowest first</option>
-								<option value="AgeHighestFirst">Age : highest first</option>
-								<option value="AgeLowestFirst">Age : lowest first</option>
-							</select>
-						</div>
-					</form>
+                    {filterMenu}
 				</div>
 			</div>
 		</nav>
